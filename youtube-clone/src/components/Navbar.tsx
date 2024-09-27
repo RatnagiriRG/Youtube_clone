@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between items-center px-14 h-14 bg-[#212121] opacity-95 top-5 sticky z-50">
-      <div className="flex gap-8 items-center text-3xl">
+    <div className="flex justify-between items-center px-14  h-14 bg-[#212121] opacity-95 top-5 sticky z-50">
+      <div className="flex gap-8 items-center text-2xl">
         <div>
           <GiHamburgerMenu />
         </div>
@@ -32,10 +32,25 @@ export default function Navbar() {
                 type="text"
                 className="w-96 bg-zinc-900 focus:outline-none border-none"
               />
-              <AiOutlineClose />
+              <AiOutlineClose className="text-xl cursor-pointer" />
             </div>
+            <button className="h-10 w-16 items-center justify-center bg-zinc-800">
+              <AiOutlineSearch className="text-xl" />
+            </button>
           </div>
         </form>
+        <div className="text-xl p-3 bg-zinc-900 rounded-full">
+          <TiMicrophone />
+        </div>
+      </div>
+      <div className="flex gap-5 items-center text-xl">
+        <BsCameraVideo />
+        <IoAppsSharp />
+        <div className="relative">
+          <BsBell />
+          <span className="absolute bottom-2  left-2 text-xs bg-red-600 rounded-full px-1">9+</span>
+        </div>
+        <img  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo" className="w-9 h-9 rounded-full"/>
       </div>
     </div>
   );
