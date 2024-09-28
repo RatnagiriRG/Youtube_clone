@@ -8,7 +8,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        
         <Route path="/" element={<Home />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/watch/:id" element={<Watch />}></Route>
