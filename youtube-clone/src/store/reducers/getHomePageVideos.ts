@@ -6,9 +6,8 @@ import { parseData } from "../../utils";
 import { HomePageVideo } from "../../Types";
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-
 export const getHomePageVideos = createAsyncThunk(
-  "youtubeApp/HomePageVideos",
+  "youtubeApp/homePageVidoes",
   async (isNext: boolean, { getState }) => {
     const {
       youtubeApp: { nextPageToken: nextPageTokenFromState, videos },
@@ -16,9 +15,11 @@ export const getHomePageVideos = createAsyncThunk(
     const {
       data: { items, nextPageToken },
     } = await axios.get(
-      `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video${isNext?`pageToken=${nextPageTokenFromState}`:""}`
+      `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video&${
+        isNext ? `pageToken=${nextPageTokenFromState}` : ""
+      }`
     );
-
+    console.log({ items, nextPageTokenFromState, nextPageToken });
     const parsedData: HomePageVideo[] = await parseData(items);
     return { parsedData: [...videos, ...parsedData], nextPageToken };
   }

@@ -7,10 +7,17 @@ import Spinner from "../components/Spinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { HomePageVideo } from "../Types";
 import Card from "../components/Card";
+import { clearVideos } from "../store";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const videos = useAppSelector((state) => state.youtubeApp.videos);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearVideos());
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     console.log(videos);
@@ -30,7 +37,6 @@ export default function Home() {
             hasMore={videos.length < 500}
             loader={<Spinner />}
             height={850}
-            
           >
             <div className="grid gap-y-14 gap-x-8 grid-cols-4 p-8">
               {videos.map((item: HomePageVideo) => {
